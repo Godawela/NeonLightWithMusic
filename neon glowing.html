@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Music with Neon</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="neon.css">
+    </head>
+    <body>
+        
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <audio id="song">
+            <source src="C:/Users/ACER/Downloads/music1.mp3" type="audio/mpeg">  
+        </audio>
+
+        <button id="button" onclick="togglePlay()">Play Music</button>
+
+<script>
+    var audio = document.getElementById("song");
+    var playButton = document.getElementById("button");
+    var audioFiles = ["C:/Users/ACER/Downloads/rapmusic1.mp3","C:/Users/ACER/Downloads/music2.mp3","C:/Users/ACER/Downloads/rapmusic.mp3"]; // Add paths to all your audio files here
+    var currentAudioIndex = 0;
+
+    function togglePlay() {
+        if (audio.paused) {
+            audio.play();
+            document.getElementById("button").innerText = "Pause Music";
+        } else {
+            audio.pause();
+            document.getElementById("button").innerText = "Play Music";
+        }
+    }
+
+    audio.onended = function() {
+        // Increment current audio index and check if it's within bounds
+        currentAudioIndex++;
+        if (currentAudioIndex >= audioFiles.length) {
+            currentAudioIndex = 0; // Start from the first audio file again if all have been played
+        }
+        // Set the source of the audio element to the next audio file
+        audio.src = audioFiles[currentAudioIndex];
+        // Play the new audio file
+        audio.play();
+    };
+</script>
+    </body>
+</html>
